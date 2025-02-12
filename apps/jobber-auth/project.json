@@ -15,7 +15,8 @@
         "development": {
           "args": ["node-env=development"]
         }
-      }
+      },
+      "dependsOn": ["generate-types"]
     },
     "serve": {
       "executor": "@nx/js:node",
@@ -32,6 +33,24 @@
         "production": {
           "buildTarget": "jobber-auth:build:production"
         }
+      }
+    },
+    "generate-types": {
+      "command": "prisma generate",
+      "options": {
+        "cwd": "apps/jobber-auth"
+      }
+    },
+    "migrate-prisma": {
+      "command": "prisma migrate dev",
+      "options": {
+        "cwd": "apps/jobber-auth"
+      }
+    },
+    "db-push": {
+      "command": "prisma db push",
+      "options": {
+        "cwd": "apps/jobber-auth"
       }
     },
     "test": {
